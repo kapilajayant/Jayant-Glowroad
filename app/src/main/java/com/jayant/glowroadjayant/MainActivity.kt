@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(binding.root)
 
-
+        binding.shimmerFrameLayout.startShimmerAnimation()
 
     }
 }
