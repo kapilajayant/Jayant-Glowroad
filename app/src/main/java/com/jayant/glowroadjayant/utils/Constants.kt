@@ -4,7 +4,7 @@ class Constants {
 
     companion object {
 
-        const val BASE_URL = "user_name"
+        const val BASE_URL = ""
 
     }
 
