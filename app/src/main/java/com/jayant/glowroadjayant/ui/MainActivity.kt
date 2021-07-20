@@ -1,22 +1,24 @@
 package com.jayant.glowroadjayant.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jayant.glowroadjayant.adapters.PhotosAdapter
 import com.jayant.glowroadjayant.databinding.ActivityMainBinding
 import com.jayant.glowroadjayant.models.ApiResponse
 import com.jayant.glowroadjayant.models.PhotoModel
 import com.jayant.glowroadjayant.network.ApiUtils
+import com.jayant.glowroadjayant.viewmodels.PhotosViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.lang.Exception
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,11 +29,17 @@ class MainActivity : AppCompatActivity() {
 
     private var adapter: PhotosAdapter? = null
 
+    private var layoutManager = LinearLayoutManager(this)
+    private lateinit var photosViewModel: PhotosViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
+
+        photosViewModel = ViewModelProvider(this).get(PhotosViewModel::class.java)
+
 
         binding.shimmerFrameLayout.startShimmerAnimation()
 
@@ -39,15 +47,27 @@ class MainActivity : AppCompatActivity() {
 
         setupUI()
 
-        getPhotos("1")
-
     }
 
     private fun setupUI() {
 
-        val linearLayoutManager = LinearLayoutManager(this)
-        linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
-        binding.rvImages.layoutManager = linearLayoutManager
+        binding.rvImages.layoutManager = layoutManager
+        observeData()
+    }
+
+    private fun observeData(){
+        photosViewModel.getPhotos().observe(this, Observer{
+
+            binding.shimmerFrameLayout.stopShimmerAnimation()
+            binding.shimmerFrameLayout.visibility = View.GONE
+
+            Log.d(TAG, it.toString())
+
+            binding.rvImages.adapter = PhotosAdapter(this@MainActivity, it)
+
+            binding.rvImages.visibility = View.VISIBLE
+
+        })
     }
 
     private fun getPhotos(page: String) {
