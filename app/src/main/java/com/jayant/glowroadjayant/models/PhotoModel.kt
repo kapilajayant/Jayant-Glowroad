@@ -1,5 +1,9 @@
 package com.jayant.glowroadjayant.models
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class PhotoModel(
     var id: String,
     var owner: String,
@@ -13,4 +17,4 @@ data class PhotoModel(
     var url_q: String,
     var height_q: Int,
     var width_q: Int
-)
+) : Parcelable

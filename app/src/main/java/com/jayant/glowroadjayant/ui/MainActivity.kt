@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jayant.glowroadjayant.adapters.PhotosAdapter
 import com.jayant.glowroadjayant.databinding.ActivityMainBinding
