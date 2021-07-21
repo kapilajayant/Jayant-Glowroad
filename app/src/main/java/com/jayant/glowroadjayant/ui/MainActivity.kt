@@ -8,14 +8,17 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.jayant.glowroadjayant.adapters.PhotosAdapter
 import com.jayant.glowroadjayant.databinding.ActivityMainBinding
 import com.jayant.glowroadjayant.models.PhotoModel
 import com.jayant.glowroadjayant.utils.NetworkHelper.isNetworkAvailable
+import com.jayant.glowroadjayant.utils.ProgressDialogHelper
 import com.jayant.glowroadjayant.viewmodels.PhotosViewModel
 
 class MainActivity : AppCompatActivity() {
 
+    private var page = 1
     private val TAG = MainActivity::class.java.simpleName
     lateinit var binding: ActivityMainBinding
 
@@ -25,6 +28,10 @@ class MainActivity : AppCompatActivity() {
 
     private var layoutManager = LinearLayoutManager(this)
     private lateinit var photosViewModel: PhotosViewModel
+
+    var isLoading = false
+
+    var loader: ProgressDialogHelper? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,6 +50,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupUI() {
+
+        loader = ProgressDialogHelper(this)
+
         binding.swipe.isRefreshing = true
         binding.swipe.setOnRefreshListener {
             binding.swipe.isRefreshing = true
@@ -68,20 +78,42 @@ class MainActivity : AppCompatActivity() {
             binding.swipe.isRefreshing = false
             Toast.makeText(this, "Connect to internet", Toast.LENGTH_SHORT).show()
         }
+        binding.rvImages.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                val linearLayoutManager = recyclerView.layoutManager as LinearLayoutManager?
+                if (!isLoading) {
+                    if (linearLayoutManager != null && linearLayoutManager.findLastCompletelyVisibleItemPosition() == photosList.size - 1) {
+                        isLoading = true
+                        binding.swipe.isRefreshing = true
+                        Toast.makeText(this@MainActivity, "Loading...", Toast.LENGTH_SHORT).show()
+                        page++
+                        observeData()
+                    }
+                }
+            }
+        })
+        adapter = PhotosAdapter(this@MainActivity, photosList)
+        binding.rvImages.adapter = adapter
+
     }
 
     private fun observeData() {
+        isLoading = false
+        loader?.hideProgressDialog()
+        Log.d(TAG, "observeData page: $page")
         // observing the photos list and updating ui accordingly
-        photosViewModel.getPhotos("1").observe(this, Observer {
+        photosViewModel.getPhotos(page).observe(this, Observer {
 
             binding.swipe.isRefreshing = false
             binding.shimmerFrameLayout.stopShimmerAnimation()
             binding.shimmerFrameLayout.visibility = View.GONE
 
-            Log.d(TAG, it.toString())
+            photosList.addAll(it)
 
-            binding.rvImages.adapter = PhotosAdapter(this@MainActivity, it)
-
+            Log.d(TAG, photosList.toString())
+            Log.d(TAG, photosList.size.toString())
+            adapter?.notifyDataSetChanged()
             binding.rvImages.visibility = View.VISIBLE
 
         })

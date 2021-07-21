@@ -16,18 +16,18 @@ import java.lang.Exception
 
 class PhotosRepository {
 
-    internal var page = "1"
+    internal var page = 1
 
     private val TAG = PhotosRepository::class.java.simpleName
 
     private var photosList = MutableLiveData<ArrayList<PhotoModel>>()
 
     // method to make api call and return the list
-    internal fun getDataFromApi(page: String): MutableLiveData<ArrayList<PhotoModel>>{
+    internal fun getDataFromApi(page: Int): MutableLiveData<ArrayList<PhotoModel>>{
         GlobalScope.launch(Dispatchers.IO) {
-            Log.d(TAG, "getPhotos: $page")
-
+            Log.d(TAG, "getPhotos page: $page")
             val response = ApiUtils.getApiService()?.getPhotos(page)?.execute()
+            Log.d(TAG, "getDataFromApi: $response?.raw()?.request()?.url()")
             if (response != null) {
                 if (response.isSuccessful) {
                     try {
@@ -44,7 +44,7 @@ class PhotosRepository {
 
         }
 
-        Log.d(TAG, "getPhotos: ${photosList.value}")
+        Log.d(TAG, "getPhotos photosList: ${photosList.value}")
         return photosList
     }
 }
