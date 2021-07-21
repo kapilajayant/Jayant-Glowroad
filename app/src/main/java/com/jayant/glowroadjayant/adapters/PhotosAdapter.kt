@@ -1,7 +1,6 @@
 package com.jayant.glowroadjayant.adapters
 
 import android.content.Context
-import android.graphics.drawable.Drawable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +9,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.target.Target
 import com.jayant.glowroadjayant.R
 import com.jayant.glowroadjayant.models.PhotoModel
 
@@ -23,6 +21,11 @@ class PhotosAdapter(var context: Context, var photosList: ArrayList<PhotoModel>)
             parent,
             false
         )
+
+        val displayMetrics = context.resources.displayMetrics
+        val height = displayMetrics.heightPixels
+        val width = displayMetrics.widthPixels
+
         return PhotosViewHolder(view)
     }
 
