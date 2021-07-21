@@ -1,17 +1,26 @@
 package com.jayant.glowroadjayant.ui
 
+import android.app.AlertDialog
+import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
+import android.text.InputType
 import android.util.Log
+import android.view.Menu
 import android.view.View
+import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.jayant.glowroadjayant.R
 import com.jayant.glowroadjayant.adapters.PhotosAdapter
 import com.jayant.glowroadjayant.databinding.ActivityMainBinding
 import com.jayant.glowroadjayant.models.PhotoModel
+import com.jayant.glowroadjayant.utils.Constants
 import com.jayant.glowroadjayant.utils.NetworkHelper.isNetworkAvailable
 import com.jayant.glowroadjayant.utils.ProgressDialogHelper
 import com.jayant.glowroadjayant.viewmodels.PhotosViewModel
@@ -134,6 +143,22 @@ class MainActivity : AppCompatActivity() {
 
         })
 
+    }
+
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+
+        val menuInflater = menuInflater
+        menuInflater.inflate(R.menu.menu_home, menu)
+
+        val menu_info = menu.findItem(R.id.menu_info)
+        menu_info.setOnMenuItemClickListener {
+
+            val intent = Intent(this, AboutActivity::class.java)
+            startActivity(intent)
+            return@setOnMenuItemClickListener false
+        }
+        return true
     }
 
 
