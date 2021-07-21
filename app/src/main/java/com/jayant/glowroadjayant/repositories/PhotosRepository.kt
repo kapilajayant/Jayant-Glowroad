@@ -16,8 +16,6 @@ import java.lang.Exception
 
 class PhotosRepository {
 
-    internal var page = 1
-
     private val TAG = PhotosRepository::class.java.simpleName
 
     private var photosList = MutableLiveData<ArrayList<PhotoModel>>()

@@ -53,6 +53,10 @@ class MainActivity : AppCompatActivity() {
 
         loader = ProgressDialogHelper(this)
 
+        // Initialising visibility of widgets
+
+        // Setting swipe refresh listener
+
         binding.swipe.isRefreshing = true
         binding.swipe.setOnRefreshListener {
             binding.swipe.isRefreshing = true
@@ -67,10 +71,13 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "Connect to internet", Toast.LENGTH_SHORT).show()
             }
         }
+
         binding.rvImages.layoutManager = layoutManager
         if (isNetworkAvailable(this)) {
             observeData()
-        } else {
+        }
+        else
+        {
             binding.rvImages.visibility = View.GONE
             binding.shimmerFrameLayout.stopShimmerAnimation()
             binding.shimmerFrameLayout.visibility = View.GONE
@@ -78,6 +85,9 @@ class MainActivity : AppCompatActivity() {
             binding.swipe.isRefreshing = false
             Toast.makeText(this, "Connect to internet", Toast.LENGTH_SHORT).show()
         }
+
+        // Initialising scroll listener
+
         binding.rvImages.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
@@ -86,6 +96,7 @@ class MainActivity : AppCompatActivity() {
                     if (linearLayoutManager != null && linearLayoutManager.findLastCompletelyVisibleItemPosition() == photosList.size - 1) {
                         isLoading = true
                         binding.swipe.isRefreshing = true
+//                        loader?.showProgressDialog()
                         Toast.makeText(this@MainActivity, "Loading...", Toast.LENGTH_SHORT).show()
                         page++
                         observeData()
@@ -93,6 +104,9 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
+
+        // Setting up the adapter
+
         adapter = PhotosAdapter(this@MainActivity, photosList)
         binding.rvImages.adapter = adapter
 
@@ -100,9 +114,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun observeData() {
         isLoading = false
-        loader?.hideProgressDialog()
         Log.d(TAG, "observeData page: $page")
         // observing the photos list and updating ui accordingly
+        
         photosViewModel.getPhotos(page).observe(this, Observer {
 
             binding.swipe.isRefreshing = false
@@ -110,6 +124,8 @@ class MainActivity : AppCompatActivity() {
             binding.shimmerFrameLayout.visibility = View.GONE
 
             photosList.addAll(it)
+
+//            loader?.hideProgressDialog()
 
             Log.d(TAG, photosList.toString())
             Log.d(TAG, photosList.size.toString())
