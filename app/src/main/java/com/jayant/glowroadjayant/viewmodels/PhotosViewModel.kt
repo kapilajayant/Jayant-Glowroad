@@ -9,7 +9,7 @@ import com.jayant.glowroadjayant.repositories.PhotosRepository
 class PhotosViewModel : ViewModel() {
 
     private val TAG = PhotosViewModel::class.java.simpleName
-    internal var photosList : MutableLiveData<ArrayList<PhotoModel>> = MutableLiveData()
+    private var photosList : MutableLiveData<ArrayList<PhotoModel>> = MutableLiveData()
     internal var status : MutableLiveData<String> = MutableLiveData()
     private val photosRepository = PhotosRepository()
 

@@ -1,6 +1,7 @@
 package com.jayant.glowroadjayant.adapters
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.jayant.glowroadjayant.R
 import com.jayant.glowroadjayant.models.PhotoModel
+import com.jayant.glowroadjayant.ui.DetailsActivity
+import com.jayant.glowroadjayant.utils.Constants.Companion.KEY_IMAGE_URL
+import com.jayant.glowroadjayant.utils.Constants.Companion.KEY_TITLE
 
 class PhotosAdapter(var context: Context, var photosList: ArrayList<PhotoModel>): RecyclerView.Adapter<PhotosViewHolder>() {
     private val TAG = PhotosAdapter::class.java.simpleName
@@ -38,8 +42,15 @@ class PhotosAdapter(var context: Context, var photosList: ArrayList<PhotoModel>)
 
         Glide.with(context)
             .load(photosList.get(position).url_q)
-            .centerCrop()
+            .fitCenter()
             .into(holder.iv)
+
+        holder.itemView.setOnClickListener {
+            val intent = Intent(context, DetailsActivity::class.java)
+            intent.putExtra(KEY_IMAGE_URL, photosList.get(position).url_q)
+            intent.putExtra(KEY_TITLE, photosList.get(position).title)
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {
