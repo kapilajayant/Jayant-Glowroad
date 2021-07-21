@@ -116,7 +116,7 @@ class MainActivity : AppCompatActivity() {
         isLoading = false
         Log.d(TAG, "observeData page: $page")
         // observing the photos list and updating ui accordingly
-        
+
         photosViewModel.getPhotos(page).observe(this, Observer {
 
             binding.swipe.isRefreshing = false
