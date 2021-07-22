@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">Jayant Glowroad</string>
+    <string name="hi">Hi</string>
+    <string name="i_m_jayant_kapila">I am Jayant Kapila</string>
+    <string name="email">Email</string>
+    <string name="email_desc">If you have any query, reach out to me via email</string>
+    <string name="linkedin">Linkedin</string>
+    <string name="linkedin_desc">Reach out to me on linkedin</string>
+    <string name="github">Github</string>
+    <string name="github_desc">Visit my github</string>
+    <string name="play_store">Play Store</string>
+    <string name="play_store_desc">Check out my other apps</string>
+    <string name="glide">Glide</string>
+    <string name="retrofit">Retrofit</string>
+    <string name="google_truth">Google Truth</string>
+    <string name="facebook_shimmer">Facebook Shimmer</string>
 </resources>

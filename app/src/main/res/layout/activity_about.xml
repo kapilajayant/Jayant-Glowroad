@@ -1,326 +1,321 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/colorPrimary"
+    android:orientation="vertical"
     tools:context=".ui.AboutActivity">
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/scrollView"
-        android:background="?attr/colorPrimary">
+        android:orientation="vertical">
 
-        <LinearLayout
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/uber_bold"
+            android:text="@string/hi"
+            android:textColor="@color/white"
+            android:textSize="40sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/uber_bold"
+            android:text="@string/i_m_jayant_kapila"
+            android:textColor="@color/white"
+            android:textSize="30sp" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/card_mail"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginRight="30dp"
+            android:backgroundTint="@color/white"
+            android:clickable="true"
+            android:elevation="3dp"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardCornerRadius="10dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="30dp"
-                android:fontFamily="@font/uber_bold"
-                android:text="Hi"
-                android:textColor="?attr/colorOnPrimary"
-                android:textSize="40sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/uber_bold"
-                android:text="I'm Jayant Kapila"
-                android:textColor="?attr/colorOnPrimary"
-                android:textSize="30sp" />
-
-            <androidx.cardview.widget.CardView
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/card_mail"
-                app:cardCornerRadius="10dp"
-                android:clickable="true"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:layout_marginLeft="30dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginEnd="30dp"
-                android:layout_marginTop="30dp"
-                android:elevation="3dp"
-                android:background="@android:color/white"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                xmlns:tools="http://schemas.android.com/tools">
+                android:layout_height="match_parent"
+                android:layout_margin="15dp">
+
+                <ImageView
+                    android:id="@+id/iv_email"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/ic_email" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="15dp">
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/iv_email">
 
-                    <ImageView
-                        android:id="@+id/iv_email"
-                        android:layout_width="48dp"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/ic_email"
-                        android:layout_height="48dp"
-                        android:layout_marginTop="10dp" />
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/tv_email"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_toRightOf="@id/iv_email"
-                        android:layout_centerVertical="true">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Email"
-                            android:fontFamily="@font/uber_bold"
-                            android:textColor="@color/black"
-                            android:layout_marginLeft="30dp"
-                            android:textStyle="bold"
-                            android:textSize="20dp"
-                            android:id="@+id/tv_email"/>
+                        android:layout_marginLeft="30dp"
+                        android:fontFamily="@font/uber_bold"
+                        android:text="@string/email"
+                        android:textColor="@color/black"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
 
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="30dp"
-                            android:layout_below="@id/tv_email"
-                            android:fontFamily="@font/uber_medium"
-                            android:textColor="@color/black"
-                            android:text="If you have any query, reach out to me via email"/>
-                    </RelativeLayout>
-
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tv_email"
+                        android:layout_marginLeft="30dp"
+                        android:fontFamily="@font/uber_medium"
+                        android:text="@string/email_desc"
+                        android:textColor="@color/black" />
                 </RelativeLayout>
 
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/card_linkedin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginRight="30dp"
+            android:backgroundTint="@color/white"
+            android:clickable="true"
+            android:elevation="3dp"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardCornerRadius="10dp">
+
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/card_linkedin"
-                app:cardCornerRadius="10dp"
-                android:clickable="true"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:layout_marginLeft="30dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginEnd="30dp"
-                android:layout_marginTop="10dp"
-                android:elevation="3dp"
-                android:background="@android:color/white"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                xmlns:tools="http://schemas.android.com/tools">
+                android:layout_height="match_parent"
+                android:layout_margin="15dp">
+
+                <ImageView
+                    android:id="@+id/iv_linkedin"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/ic_linkedin" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="15dp">
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/iv_linkedin">
 
-                    <ImageView
-                        android:id="@+id/iv_linkedin"
-                        android:layout_width="48dp"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/ic_linkedin"
-                        android:layout_height="48dp"
-                        android:layout_marginTop="10dp"/>
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/tv_name"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_toRightOf="@id/iv_linkedin"
-                        android:layout_centerVertical="true">
+                        android:layout_marginLeft="30dp"
+                        android:fontFamily="@font/uber_bold"
+                        android:text="@string/linkedin"
+                        android:textColor="@color/black"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Linkedin"
-                            android:fontFamily="@font/uber_bold"
-                            android:textColor="@color/black"
-                            android:layout_marginLeft="30dp"
-                            android:textStyle="bold"
-                            android:textSize="20dp"
-                            android:id="@+id/tv_name"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="30dp"
-                            android:layout_below="@id/tv_name"
-                            android:fontFamily="@font/uber_medium"
-                            android:textColor="@color/black"
-                            android:text="Reach out to me on linkedin"
-                            android:id="@+id/tv_number"/>
-                    </RelativeLayout>
-
+                    <TextView
+                        android:id="@+id/tv_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tv_name"
+                        android:layout_marginLeft="30dp"
+                        android:fontFamily="@font/uber_medium"
+                        android:text="@string/linkedin_desc"
+                        android:textColor="@color/black" />
                 </RelativeLayout>
 
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/card_github"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginRight="30dp"
+            android:backgroundTint="@color/white"
+            android:clickable="true"
+            android:elevation="3dp"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardCornerRadius="10dp">
+
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/card_github"
-                app:cardCornerRadius="10dp"
-                android:clickable="true"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:layout_marginLeft="30dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginEnd="30dp"
-                android:layout_marginTop="10dp"
-                android:elevation="3dp"
-                android:background="@android:color/white"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                xmlns:tools="http://schemas.android.com/tools">
+                android:layout_height="match_parent"
+                android:layout_margin="15dp">
+
+                <ImageView
+                    android:id="@+id/iv_map"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/ic_github" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="15dp">
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/iv_map">
 
-                    <ImageView
-                        android:id="@+id/iv_map"
-                        android:layout_width="48dp"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/ic_github"
-                        android:layout_height="48dp"
-                        android:layout_marginTop="10dp"/>
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/tv_map"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_toRightOf="@id/iv_map"
-                        android:layout_centerVertical="true">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Github"
-                            android:fontFamily="@font/uber_bold"
-                            android:textColor="@color/black"
-                            android:layout_marginLeft="30dp"
-                            android:textStyle="bold"
-                            android:textSize="20dp"
-                            android:id="@+id/tv_map"/>
+                        android:layout_marginLeft="30dp"
+                        android:fontFamily="@font/uber_bold"
+                        android:text="@string/github"
+                        android:textColor="@color/black"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
 
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="30dp"
-                            android:layout_below="@id/tv_map"
-                            android:fontFamily="@font/uber_medium"
-                            android:textColor="@color/black"
-                            android:text="Visit my github" />
-                    </RelativeLayout>
-
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tv_map"
+                        android:layout_marginLeft="30dp"
+                        android:fontFamily="@font/uber_medium"
+                        android:text="@string/github_desc"
+                        android:textColor="@color/black" />
                 </RelativeLayout>
 
-            </androidx.cardview.widget.CardView>
-            <androidx.cardview.widget.CardView
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/card_play"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginBottom="30dp"
+            android:backgroundTint="@color/white"
+            android:clickable="true"
+            android:elevation="3dp"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardCornerRadius="10dp">
+
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/card_play"
-                app:cardCornerRadius="10dp"
-                android:clickable="true"
-                android:foreground="?android:attr/selectableItemBackground"
-                android:layout_marginLeft="30dp"
-                android:layout_marginStart="30dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginEnd="30dp"
-                android:layout_marginBottom="30dp"
-                android:layout_marginTop="10dp"
-                android:elevation="3dp"
-                android:background="@android:color/white"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                xmlns:tools="http://schemas.android.com/tools">
+                android:layout_height="match_parent"
+                android:layout_margin="15dp">
+
+                <ImageView
+                    android:id="@+id/iv_play"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/ic_google_play" />
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="15dp">
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/iv_play">
 
-                    <ImageView
-                        android:id="@+id/iv_play"
-                        android:layout_width="48dp"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/ic_google_play"
-                        android:layout_height="48dp"
-                        android:layout_marginTop="10dp"/>
-
-                    <RelativeLayout
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/tv_play"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_toRightOf="@id/iv_play"
-                        android:layout_centerVertical="true">
+                        android:layout_marginLeft="30dp"
+                        android:fontFamily="@font/uber_bold"
+                        android:text="@string/play_store"
+                        android:textColor="@color/black"
+                        android:textSize="20dp"
+                        android:textStyle="bold" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Play Store"
-                            android:fontFamily="@font/uber_bold"
-                            android:textColor="@color/black"
-                            android:layout_marginLeft="30dp"
-                            android:textStyle="bold"
-                            android:textSize="20dp"
-                            android:id="@+id/tv_play"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="30dp"
-                            android:layout_below="@id/tv_play"
-                            android:fontFamily="@font/uber_medium"
-                            android:textColor="@color/black"
-                            android:text="Check out my other apps" />
-                    </RelativeLayout>
-
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/tv_play"
+                        android:layout_marginLeft="30dp"
+                        android:fontFamily="@font/uber_medium"
+                        android:text="@string/play_store_desc"
+                        android:textColor="@color/black" />
                 </RelativeLayout>
 
-            </androidx.cardview.widget.CardView>
+            </RelativeLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/uber_bold"
-                android:text="Glide"
-                android:textColor="?attr/colorOnPrimary"
-                android:textSize="20sp" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/uber_bold"
-                android:text="Retrofit"
-                android:textColor="?attr/colorOnPrimary"
-                android:textSize="20sp" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/uber_bold"
-                android:text="Google Truth"
-                android:textColor="?attr/colorOnPrimary"
-                android:textSize="20sp" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="20dp"
-                android:fontFamily="@font/uber_bold"
-                android:text="Facebook Shimmer"
-                android:textColor="?attr/colorOnPrimary"
-                android:textSize="20sp" />
+        </androidx.cardview.widget.CardView>
 
-        </LinearLayout>
-    </ScrollView>
-</RelativeLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/uber_bold"
+            android:text="@string/glide"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/uber_bold"
+            android:text="@string/retrofit"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/uber_bold"
+            android:text="@string/google_truth"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/uber_bold"
+            android:text="@string/facebook_shimmer"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+</ScrollView>

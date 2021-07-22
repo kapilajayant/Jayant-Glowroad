@@ -3,6 +3,8 @@ package com.jayant.glowroadjayant.ui
 import android.app.AlertDialog
 import android.content.DialogInterface
 import android.content.Intent
+import android.content.res.Configuration
+import android.os.Build
 import android.os.Bundle
 import android.text.InputType
 import android.util.Log
@@ -60,6 +62,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupUI() {
 
+        when (resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) {
+            Configuration.UI_MODE_NIGHT_YES -> if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                val window = this.window
+                window.statusBarColor = resources.getColor(R.color.blackishGrey)
+            }
+        }
+
         loader = ProgressDialogHelper(this)
 
         // Initialising visibility of widgets
@@ -70,6 +79,7 @@ class MainActivity : AppCompatActivity() {
         binding.swipe.setOnRefreshListener {
             binding.swipe.isRefreshing = true
             if (isNetworkAvailable(this)) {
+                photosList.clear()
                 observeData()
             } else {
                 binding.rvImages.visibility = View.GONE

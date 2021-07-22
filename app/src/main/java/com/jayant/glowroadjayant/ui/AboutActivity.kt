@@ -18,6 +18,8 @@ class AboutActivity : AppCompatActivity() {
         binding = ActivityAboutBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val actionbar = supportActionBar
+        actionbar?.hide()
 
         binding.cardLinkedin.setOnClickListener(View.OnClickListener {
             val uri = String.format("https://www.linkedin.com/in/jayant-kapila-632985152/")
